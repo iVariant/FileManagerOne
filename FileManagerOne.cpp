@@ -891,8 +891,19 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 				
 
 				
+				
+			case ID_BUTTON_NOTEPAD:
+				PROCESS_INFORMATION pi;
+				STARTUPINFO sti;
 
+				ZeroMemory(&sti, sizeof(STARTUPINFO));
+				sti.cb = sizeof(STARTUPINFO);
 
+				if (!CreateProcess(L"c:\\windows\\notepad.exe", NULL, NULL, NULL, FALSE, NULL, NULL, NULL, &sti, &pi))
+				{
+					MessageBox(hWnd, L"Error opening notepad!", L"Information", MB_OK);
+				}
+				break;
 
 
 			case ID_BUTTON_RENAME:
