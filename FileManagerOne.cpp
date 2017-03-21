@@ -832,7 +832,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 			switch (wmId)
 			{
 			case IDM_ABOUT:
-				MessageBox(hWnd, L"Program: FileManagerOne v.1.0\nDeveloper: IX Variant\nE-MAIL: ix.variant@gmail.com", L"About", MB_OK);
+				MessageBox(hWnd, L"Program: FileManagerOne ver. 1.0\nDeveloper: IX Variant\nE-MAIL: ix.variant@gmail.com", L"About", MB_OK);
 				break;
 
 			case IDCLOSE:
