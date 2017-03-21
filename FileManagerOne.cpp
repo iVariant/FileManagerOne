@@ -16,7 +16,7 @@ int height = 768;
 HWND hWndComboBoxDisk1, hWndComboBoxDisk2,
 	 hWndEdit1, hWndEdit2,
 	 hWndListBox1, hWndListBox2,
-	 hWndButtonRename,hWndButtonCopy,hWndButtonMove,hWndButtonDIR,hWndButtonDelete,hWndButtonRefresh,hWndButtonNotePad;
+	 hWndButtonRename,hWndButtonCopy,hWndButtonMove,hWndButtonDIR,hWndButtonDelete,hWndButtonRefresh,hWndButtonNotePad, hWndButtonCalc;
 
 WNDPROC origWndProcListView;
 TCHAR GAppname[] = TEXT("WinMain :: ComboBox");
@@ -388,6 +388,22 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		SendMessage(hWndButtonNotePad, BM_SETIMAGE, IMAGE_ICON,
 			(LPARAM)LoadImage(hInst, MAKEINTRESOURCE(IDI_ICON3), IMAGE_ICON,
 			0, 0, LR_DEFAULTCOLOR));
+
+
+		hWndButtonCalc = CreateWindow(
+			L"Button",
+			L"",
+			WS_TABSTOP | WS_VISIBLE | WS_CHILD | BS_ICON | BS_PUSHBUTTON,
+			110, 0,
+			25, 25,
+			hWnd,
+			(HMENU)ID_BUTTON_CALC,
+			NULL,
+			NULL);
+
+		SendMessage(hWndButtonCalc, BM_SETIMAGE, IMAGE_ICON,
+			(LPARAM)LoadImage(hInst, MAKEINTRESOURCE(IDI_ICON9), IMAGE_ICON,
+				0, 0, LR_DEFAULTCOLOR));
 
 
 		//SetMenuItemBitmaps(IDC_FILEMANAGERONE,)
@@ -902,6 +918,19 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 				if (!CreateProcess(L"c:\\windows\\notepad.exe", NULL, NULL, NULL, FALSE, NULL, NULL, NULL, &sti, &pi))
 				{
 					MessageBox(hWnd, L"Error opening notepad!", L"Information", MB_OK);
+				}
+				break;
+
+			case ID_BUTTON_CALC:
+				PROCESS_INFORMATION piCalc;
+				STARTUPINFO stiCalc;
+
+				ZeroMemory(&stiCalc, sizeof(STARTUPINFO));
+				stiCalc.cb = sizeof(STARTUPINFO);
+
+				if (!CreateProcess(L"C:\\Windows\\System32\\calc.exe", NULL, NULL, NULL, FALSE, NULL, NULL, NULL, &stiCalc, &piCalc))
+				{
+					MessageBox(hWnd, L"Error opening calculator!", L"Information", MB_OK);
 				}
 				break;
 

@@ -96,6 +96,7 @@
     <ResourceCompile Include="FileManagerOne.rc" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="Resource Files\calc.ico" />
     <Image Include="Resource Files\CloseM.bmp" />
     <Image Include="Resource Files\InformationM.bmp" />
     <Image Include="Resource Files\NewFolderM.bmp" />
